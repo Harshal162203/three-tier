@@ -15,7 +15,7 @@ variable "project" {
 }
 
 variable "env" {
-    defautl = "dev"
+    default = "dev"
 }
 
 variable "image_id" {
