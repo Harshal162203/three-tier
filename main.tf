@@ -11,7 +11,7 @@ resource "aws_vpc" "my_vpc" {
 }
 
 resource "aws_subnet" "private_subnet" {
-    vpc_id     = aws_vpc.my_vpc.vpc.id
+    vpc_id     = aws_vpc.my_vpc.id
     cidr_block = var.private_subnet_cidr
 
     tags = {
@@ -23,7 +23,7 @@ resource "aws_subnet" "private_subnet" {
 resource "aws_subnet" "public_subnet" {
     vpc_id                   = aws_vpc.my_vpc.id
     cidr_block               = var.public_subnet_cidr
-    map_public_ip-on_launch  = true
+    map_public_ip_on_launch  = true
 
     tags = {
         env  = var.env
@@ -49,7 +49,7 @@ resource "aws_route" "igw_route" {
 }
 
 resource "aws_security_group" "my_sg" {
-    Name            = "${var.project}--sg"
+    name            = "${var.project}--sg"
     description     = "allow http and ssh"
     vpc_id          = "aws_vpc.my_vpc.id"
     ingress {
@@ -64,7 +64,7 @@ resource "aws_security_group" "my_sg" {
         from_port   = 80 
         to_port     = 80
     }
-    engress {
+    egress {
         cidr_blocks = ["0.0.0.0/0"]
         protocol    = "-1"
         from_port   = 0 
