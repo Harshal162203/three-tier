@@ -73,7 +73,7 @@ resource "aws_security_group" "my_sg" {
     depends_on = [aws_internet_gateway.my_igw]
 }
 
-resource "aws_instance" "instace_1" {
+resource "aws_instance" "instance_1" {
     ami                     = var.image_id
     instance_type           = var.instance_type
     key_name                = var.key_pair 
@@ -88,7 +88,7 @@ resource "aws_instance" "instace_1" {
 
 resource "aws_instance" "instance_2" {
     ami                    = var.image_id
-    instace_type           = var.instance_type
+    instance_type           = var.instance_type
     key_name               = var.key_pair
     vpc_security_group_ids = [aws_security_group.my_sg.id]
     
