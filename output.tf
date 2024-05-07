@@ -3,7 +3,7 @@ output "hello_world" {
 }
 
 output "public-instance-public-ip" {
-    value = aws_instance.instance_2.map_public_ip_on_launch
+    value = aws_instance.instance_2.public_ip
 }
 
 output "public-instance-state" {
