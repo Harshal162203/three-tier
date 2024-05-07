@@ -70,5 +70,32 @@ resource "aws_security_group" "my_sg" {
         from_port   = 0 
         to_port     = 0
     }
+    depends_on = [aws_internet_gateway.my_igw]
+}
+
+resource "aws_instance" "instace_1" {
+    ami                     = var.image_id
+    instance_type           = var.instance_type
+    key_name                = var.key_pair 
+    vpc_security_group_ids  = [aws_security_group.my_sg.id]
+
+    tags = {
+        Name  = "${var.project}--private-instance"
+        env = var.env
+    }
+    subnet_id = aws_subnet.private_subnet.id
+}
+
+resource "aws_instance" "instance_2" {
+    ami                    = var.image_id
+    instace_type           = var.instance_type
+    key_name               = var.key_pair
+    vpc_security_group_ids = [aws_security_group.my_sg.id]
+    
+    tags = {
+        Name = "${var.project}--public-instance"
+        env  = var.env
+    }
+    subnet_id = aws_subnet.public_subnet.id
 }
 

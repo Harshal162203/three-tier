@@ -17,3 +17,15 @@ variable "project" {
 variable "env" {
     defautl = "dev"
 }
+
+variable "image_id" {
+    default = "ami-0111c5910da90c2a7"
+}
+
+variable "instance_type" {
+    default = "t2.micro"
+}
+
+variable "key_pair" {
+    default = "harshnew"
+}
