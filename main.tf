@@ -51,7 +51,7 @@ resource "aws_route" "igw_route" {
 resource "aws_security_group" "my_sg" {
     name            = "${var.project}--sg"
     description     = "allow http and ssh"
-    vpc_id          = "aws_vpc.my_vpc.id"
+    vpc_id          =  aws_vpc.my_vpc.id
     ingress {
         cidr_blocks = ["0.0.0.0/0"]
         protocol    = "TCP" 
